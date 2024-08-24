@@ -37,3 +37,19 @@ def search_books(request):
     else:
         books = Book.objects.all()
     return render(request, 'bookshelf/book_list.html', {'books': books})
+
+
+# views.py
+
+from django.shortcuts import render
+from .forms import ExampleForm
+
+def book_list(request):
+    if request.method == 'POST':
+        form = ExampleForm(request.POST)
+        if form.is_valid():
+            form.save()
+    else:
+        form = ExampleForm()
+    books = Book.objects.all()
+    return render(request, 'bookshelf/book_list.html', {'form': form, 'books': books})

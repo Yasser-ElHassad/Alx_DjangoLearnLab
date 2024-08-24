@@ -1,5 +1,9 @@
-<form method="post">
-    {% csrf_token %}
-    <!-- form fields -->
-    <button type="submit">Submit</button>
-</form>
+# forms.py
+
+from django import forms
+from .models import Book
+
+class ExampleForm(forms.ModelForm):
+    class Meta:
+        model = Book
+        fields = ['title', 'author', 'published_date']
