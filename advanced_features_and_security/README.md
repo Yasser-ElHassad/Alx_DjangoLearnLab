@@ -50,3 +50,22 @@
 
 6. **Verify Directory Structure on GitHub:**
    - Ensure the directory `0x1.Introduction_to_Django/LibraryProject/` is correctly set up.
+
+# README.md
+
+## Permissions and Groups Setup
+
+### Custom Permissions
+- `can_view`: Can view MyModel
+- `can_create`: Can create MyModel
+- `can_edit`: Can edit MyModel
+- `can_delete`: Can delete MyModel
+
+### Groups
+- **Editors**: `can_edit`, `can_create`
+- **Viewers**: `can_view`
+- **Admins**: `can_view`, `can_create`, `can_edit`, `can_delete`
+
+### Usage
+- Use `@permission_required('myapp.can_edit', raise_exception=True)` to protect views.
+- Assign users to groups via Django admin or programmatically.
