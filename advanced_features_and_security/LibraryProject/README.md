@@ -69,3 +69,23 @@
 ### Usage
 - Use `@permission_required('myapp.can_edit', raise_exception=True)` to protect views.
 - Assign users to groups via Django admin or programmatically.
+
+
+# Security Measures
+
+## Settings
+- `DEBUG = False`: Disable debug mode in production.
+- `SECURE_BROWSER_XSS_FILTER = True`: Enable XSS filter.
+- `X_FRAME_OPTIONS = 'DENY'`: Prevent clickjacking.
+- `SECURE_CONTENT_TYPE_NOSNIFF = True`: Prevent MIME type sniffing.
+- `CSRF_COOKIE_SECURE = True`: Ensure CSRF cookies are sent over HTTPS.
+- `SESSION_COOKIE_SECURE = True`: Ensure session cookies are sent over HTTPS.
+
+## CSRF Protection
+- Ensure all forms include `{% csrf_token %}`.
+
+## SQL Injection Prevention
+- Use Django ORM to parameterize queries.
+
+## Content Security Policy (CSP)
+- Use `django-csp` middleware to set CSP headers.

@@ -25,3 +25,15 @@ def edit_view(request, pk):
 def create_view(request):
     # Your view logic here
     return render(request, 'create_template.html')
+
+
+from django.shortcuts import render
+from .models import Book
+
+def search_books(request):
+    query = request.GET.get('q')
+    if query:
+        books = Book.objects.filter(title__icontains=query)
+    else:
+        books = Book.objects.all()
+    return render(request, 'bookshelf/book_list.html', {'books': books})
