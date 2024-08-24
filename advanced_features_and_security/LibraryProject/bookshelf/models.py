@@ -4,6 +4,13 @@ class Book(models.Model):
     title = models.CharField(max_length=200)
     author = models.CharField(max_length=100)
     publication_year = models.IntegerField()
+    class Meta:
+        permissions = [
+            ("can_view", "Can view MyModel"),
+            ("can_create", "Can create MyModel"),
+            ("can_edit", "Can edit MyModel"),
+            ("can_delete", "Can delete MyModel"),
+        ]
 
     def __str__(self):
         return self.title
@@ -42,8 +49,3 @@ class CustomUserManager(BaseUserManager):
         return self.create_user(email, date_of_birth, password, **extra_fields)
 
 
-# advanced_features_and_security/your_app/models.py
-from django.conf import settings
-
-class YourModel(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
