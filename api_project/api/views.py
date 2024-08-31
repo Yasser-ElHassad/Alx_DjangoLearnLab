@@ -1,5 +1,5 @@
 from django.shortcuts import render
-
+from rest_framework.permissions import IsAuthenticated
 
 # Create your views here.
 # api/views.py
@@ -17,5 +17,5 @@ class BookList(generics.ListAPIView):
 class BookViewSet(viewsets.ModelViewSet):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
-
+    permission_classes = [IsAuthenticated]
 
