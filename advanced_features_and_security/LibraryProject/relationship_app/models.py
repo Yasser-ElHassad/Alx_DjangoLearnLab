@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 
 # Create your models here.
 # relationship_app/models.py
@@ -44,8 +45,8 @@ class Librarian(models.Model):
 from django.contrib.auth.models import User
 
 class UserProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    role = models.CharField("Member", "Admin")
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    role = models.CharField("Member", "Admin",max_length=100)
 
     def __str__(self):
         return self.user.username
