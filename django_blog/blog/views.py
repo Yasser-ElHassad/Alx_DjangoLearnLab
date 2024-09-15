@@ -8,7 +8,6 @@ from .models import Post, Comment
 from .forms import CustomUserCreationForm, UserProfileForm, PostForm, CommentForm
 from django.contrib import messages
 
-# Existing views (register, profile, PostListView, PostCreateView, PostUpdateView, PostDeleteView) remain unchanged
 
 def register(request):
     if request.method == 'POST':
