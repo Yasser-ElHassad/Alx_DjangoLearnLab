@@ -35,17 +35,6 @@ def profile(request):
 def home(request):
     return render(request, 'blog/home.html')
 
-from django.shortcuts import render, redirect
-from django.contrib.auth import login, authenticate
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from django.urls import reverse_lazy
-from .models import Post
-from .forms import CustomUserCreationForm, UserProfileForm, PostForm
-from django.contrib import messages
-
-# Existing views (register, profile, home) remain unchanged
 
 class PostListView(ListView):
     model = Post
@@ -133,3 +122,15 @@ class CommentDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
     def get_success_url(self):
         return reverse('post_detail', kwargs={'pk': self.object.post.pk})
+    
+
+from django.db.models import Q
+from django.shortcuts import render
+from .models import Post
+
+def search(request):
+    query = request.GET.get('q')
+    results = Post.objects.filter(
+        Q(title__icontains=query) | Q(content__icontains=query) | Q(tags__name__icontains=query)
+    ).distinct()
+    return render(request, 'search_results.html', {'results': results, 'query': query})
