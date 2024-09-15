@@ -77,7 +77,7 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         return self.request.user == post.author
 
 
-class PostDetailView(DetailView):
+class PostByTagListView(DetailView):
     model = Post
     template_name = 'blog/post_detail.html'
 
