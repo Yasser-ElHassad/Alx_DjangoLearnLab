@@ -1,0 +1,14 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}Edit Comment - Django Blog{% endblock %}
+
+{% block content %}
+<div class="comment-form">
+    <h2>Edit Comment</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn">Update Comment</button>
+    </form>
+</div>
+{% endblock %}

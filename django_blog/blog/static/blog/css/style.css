@@ -128,3 +128,38 @@ color: white;
     padding: 0.5rem 1rem;
     margin: 0 0.25rem;
 }
+/* ... (previous styles remain unchanged) */
+
+/* Comment Styles */
+.comments {
+    margin-top: 2rem;
+}
+
+.comment {
+    background-color: #f9f9f9;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 5px;
+}
+
+.comment-meta {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 0.5rem;
+}
+
+.comment-actions {
+    margin-top: 0.5rem;
+}
+
+.comment-form {
+    margin-top: 2rem;
+    background-color: #f9f9f9;
+    padding: 1rem;
+    border-radius: 5px;
+}
+
+.btn-sm {
+    font-size: 0.8rem;
+    padding: 0.2rem 0.5rem;
+}
