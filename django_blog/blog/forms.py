@@ -24,15 +24,18 @@ class UserProfileForm(forms.ModelForm):
         fields = ['username', 'email', 'first_name', 'last_name']
 
 
-
-
+from taggit.forms import TagWidget
 
 class PostForm(forms.ModelForm):
-    tags = forms.ModelMultipleChoiceField(queryset=Tag.objects.all(), required=False)
-
     class Meta:
         model = Post
         fields = ['title', 'content', 'tags']
+        widgets = {
+            'tags': TagWidget(attrs={
+                'class': 'form-control',
+                'placeholder': 'Enter tags separated by commas'
+            })
+        }
 
 
 class CommentForm(forms.ModelForm):
