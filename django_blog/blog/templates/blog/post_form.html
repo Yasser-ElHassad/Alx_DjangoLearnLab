@@ -1,0 +1,14 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}{% if form.instance.pk %}Edit Post{% else %}Create Post{% endif %} - Django Blog{% endblock %}
+
+{% block content %}
+<div class="post-form">
+    <h2>{% if form.instance.pk %}Edit Post{% else %}Create New Post{% endif %}</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn">{% if form.instance.pk %}Update{% else %}Create{% endif %}</button>
+    </form>
+</div>
+{% endblock %}
