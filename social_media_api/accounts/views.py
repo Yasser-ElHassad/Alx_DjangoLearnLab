@@ -6,7 +6,7 @@ from .serializers import UserSerializer
 from .models import CustomUser
 from rest_framework import generics
 from rest_framework.authentication import TokenAuthentication
-from rest_framework.permissions import IsAuthenticated
+from rest_framework import permissions
 from .models import Post
 from .serializers import PostSerializer
 from .permissions import IsAuthorOrReadOnly
@@ -24,16 +24,16 @@ class RegisterView(APIView):
 
 class FollowUserView(generics.CreateAPIView):
     authentication_classes = [TokenAuthentication]
-    permission_classes = [IsAuthenticated, IsAuthorOrReadOnly]
+    permission_classes = [permissions.IsAuthenticated, IsAuthorOrReadOnly]
     queryset = CustomUser.objects.all()
     serializer_class = PostSerializer
 
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
 
-class UnfollowUserView(generics.RetrieveUpdateDestroyAPIView):
+class UnfollowUserView(generics.GenericAPIView):
     authentication_classes = [TokenAuthentication]
-    permission_classes = [IsAuthenticated, IsAuthorOrReadOnly]
+    permission_classes = [permissions.IsAuthenticated, IsAuthorOrReadOnly]
     queryset = CustomUser.objects.all()
     serializer_class = PostSerializer
 
