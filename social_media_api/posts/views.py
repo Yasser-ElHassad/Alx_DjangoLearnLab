@@ -65,6 +65,6 @@ def like_post(request, pk):
 
 @login_required
 def unlike_post(request, pk):
-    post = get_object_or_404(Post, pk=pk)
+    post = generics.get_object_or_404(Post, pk=pk)
     Like.objects.filter(user=request.user, post=post).delete()
     return JsonResponse({'unliked': True})
