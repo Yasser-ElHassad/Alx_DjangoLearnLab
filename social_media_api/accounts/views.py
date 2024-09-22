@@ -10,6 +10,8 @@ from rest_framework import permissions
 from .models import Post
 from .serializers import PostSerializer
 from .permissions import IsAuthorOrReadOnly
+import rest_framwork 
+
 
 class RegisterView(APIView):
     def post(self, request):
